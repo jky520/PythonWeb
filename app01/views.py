@@ -4,11 +4,15 @@ from django.shortcuts import render, HttpResponse
 import datetime
 
 def index(request): #　request类似于ｓｅｌｆ
-    
+    name_dict = {
+        'jky':[28,'IT','M'],
+        'jack':[21,'IT','F'],
+        'fugui':[28,'网络营销','M']
+    }
     # html = "<h1>Hello World!</h1>"
     # f = open('templates/index.html')
     # return HttpResponse(f.read())
-    return render(request, 'index.html') # 渲染页面，必须要去settings下设置
+    return render(request, 'index.html', {'names':name_dict}) # 渲染页面，必须要去settings下设置
 
 def show_date(request):
     c_date = datetime.datetime.now()

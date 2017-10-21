@@ -13,5 +13,23 @@
 </head>
 <body>
     <div class="header">这是index页面</div>
+    <div>
+        {{ names.jky }} --> {{ names.jack }} --> {{ names.fugui.1 }}
+        <ul>
+            {% for k,v in names.items %}
+                {% if k == 'jky' %}
+                    <li style="background: gold">{{ k }}-->{{ v }}</li>
+                {% else %}
+                    <li>{{ k }}-->{{ v }}</li>
+                {% endif %}
+                {#两种写法一样#}
+                {% ifequal k 'jky' %}
+                    <li style="background: gold">{{ k }}-->{{ v }}</li>
+                {% else %}
+                    <li>{{ k }}-->{{ v }}</li>
+                {% endifequal %}
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

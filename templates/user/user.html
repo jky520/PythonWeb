@@ -1,0 +1,7 @@
+{% extends 'index.html' %} {#继承index页面#}
+{% block page-content %}
+    {% for item in datas %}
+        <p>{{ item.website}}--{{ item.mail }}--{{ item.name }}</p>
+    {% endfor %}
+{% endblock%}
+

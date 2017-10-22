@@ -9,27 +9,62 @@
             width: 100%;
             background: greenyellow;
         }
+        .header_menu li {
+            float: left;
+            list-style: none;
+            margin-left: 15px;
+            line-height: 50px;
+        }
+        .clear_both {
+            clear: both;
+        }
+        .clicked {
+            background-color: gold;
+        }
     </style>
 </head>
 <body>
-    <div class="header">这是index页面</div>
-    <div>
-        {{ names.jky }} --> {{ names.jack }} --> {{ names.fugui.1 }}
-        <ul>
-            {% for k,v in names.items %}
-                {% if k == 'jky' %}
-                    <li style="background: gold">{{ k }}-->{{ v }}</li>
-                {% else %}
-                    <li>{{ k }}-->{{ v }}</li>
-                {% endif %}
-                {#两种写法一样#}
-                {% ifequal k 'jky' %}
-                    <li style="background: gold">{{ k }}-->{{ v }}</li>
-                {% else %}
-                    <li>{{ k }}-->{{ v }}</li>
-                {% endifequal %}
-            {% endfor %}
+    <div class="header">
+        <ul class="header_menu">
+            <li><a href="{% url 'dashboard' %}">Dashbord</a></li>
+            <li><a href="{% url 'user_index' %}">用户管理</a></li>
+            <li><a href="{% url 'assert_index' %}">资产管理</a></li>
+            <li><a href="#">设置</a></li>
         </ul>
     </div>
+
+    <div class="clear_both">
+        当前路劲：{{ menu }} || {{ request.path }}
+        {% block page-content %} {# block 表示可以重写的代码，page-content是标识 #}
+            {{ names.jky }} --> {{ names.jack }} --> {{ names.fugui.1 }}
+            <ul>
+                {% for k,v in names.items %}
+                    {% if k == 'jky' %}
+                        <li style="background: gold">{{ k }}-->{{ v }}</li>
+                    {% else %}
+                        <li>{{ k }}-->{{ v }}</li>
+                    {% endif %}
+                    {#两种写法一样#}
+    {#                {% ifequal k 'jky' %}#}
+    {#                    <li style="background: gold">{{ k }}-->{{ v }}</li>#}
+    {#                {% else %}#}
+    {#                    <li>{{ k }}-->{{ v }}</li>#}
+    {#                {% endifequal %}#}
+                {% endfor %}
+            </ul>
+        {% endblock %}
+    </div>
+
 </body>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        /*$('.header_menu li').first().addClass('clicked')*/
+        $('.header_menu li').click(function () {
+            $(this).addClass("clicked");
+            $(this).siblings().removeClass("clicked");
+        });
+        $(".header_menu li a[href='{{ request.path }}']").addClass("clicked")
+    })
+</script>
 </html>

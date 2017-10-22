@@ -1,3 +1,4 @@
+from app01.models import DreamReal
 from django.shortcuts import render, HttpResponse
 
 # Create your views here.
@@ -13,6 +14,24 @@ def index(request): #　request类似于ｓｅｌｆ
     # f = open('templates/index.html')
     # return HttpResponse(f.read())
     return render(request, 'index.html', {'names':name_dict}) # 渲染页面，必须要去settings下设置
+
+def home(request):
+    return render(request, 'home.html')
+
+def user_index(request):
+    # read
+    objects = DreamReal.objects.all();  # 获得所有集合
+    print('---------->',request.path, request.build_absolute_uri())
+    return render(request,'user/user.html', {'datas':objects})
+
+# 添加方法
+# def user_add(request):
+#     dreamreal = DreamReal(website="www.yinyuan.cn", mail='jky1988@qq.com', name='jky')
+#     dreamreal.save()  # 保存到数据库
+#     return render(request,'user/user.html)
+
+def assert_index(request):
+    return render(request,'assert/assert.html')
 
 def show_date(request):
     c_date = datetime.datetime.now()

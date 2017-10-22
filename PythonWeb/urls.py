@@ -20,6 +20,8 @@ from django.contrib import admin
 
 from app01 import views #, urls # 导入app01下的views和urls
 
+active = {'menu':'active'} # 自定义的全局变量
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
@@ -27,7 +29,10 @@ urlpatterns = [
     # url(r'^second_hand/', include(urls),),  # 把所有以second_hand开头的请求路径全部放到app01下的urls中
     # 同时还要去app01下的子项目创建urls
     # 配置路由，也就是控制器
-    url(r'^$', views.index), # 在view里用index方法处理
+    # url(r'^$', views.index, name='dashboard'), # 在view里用index方法处理
+    url(r'^$', views.home, name='dashboard'), # 在view里用home方法处理
+    url(r'^user_index/$', views.user_index, name='user_index'),
+    url(r'^assert_index/$', views.assert_index, name='assert_index'),
     # url(r'^show_date/$', views.show_date),
     # url(r'^show_date/(\d{2})/$', views.show_date_plus),
 

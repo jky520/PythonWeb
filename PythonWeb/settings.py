@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'PythonWeb.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'db_python',
+        'USER':'root',
+        'PASSWORD':'jky1988',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 
@@ -118,5 +129,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+# 这个的作用就是自动去STATICFILES_DIRS遍历找static目录下的静态资源
 STATIC_URL = '/static/'
+
+# 静态资源的访问需要自己配置
+STATICFILES_DIRS = (
+    "%s/%s" % (BASE_DIR, 'static'), # 这个static是你在项目自己命名的目录
+    # "%s/%s" % (BASE_DIR, 'static'),
+)

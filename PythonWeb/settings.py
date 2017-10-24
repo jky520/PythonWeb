@@ -27,6 +27,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SUIT_CONFIG = {
+    'ADMIN_NAME': u'麦子青青',
+    'MENU': (
+        'sites',
+        {'app': 'accounts', 'label': u'帐户'},
+        {'app': 'zinnia', 'label': u'博客'},
+        {'app': 'auth', 'label': u'认证管理'},
+    ),
+}
+
 
 # Application definition
 
@@ -137,3 +147,7 @@ STATICFILES_DIRS = (
     "%s/%s" % (BASE_DIR, 'static'), # 这个static是你在项目自己命名的目录
     # "%s/%s" % (BASE_DIR, 'static'),
 )
+
+SUIT_CONFIG = {
+    'ADMIN_NAME': 'Django Suit'
+}
